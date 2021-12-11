@@ -9,10 +9,10 @@ export 'package:appcupboard/screens/products_screen.dart';
 export 'package:appcupboard/screens/productdetail_screen.dart';
 export 'package:appcupboard/screens/register_screen.dart';
 
-export 'package:appcupboard/screens/screen_to_expire.dart';
+export 'package:appcupboard/screens/products_to_expire_screen.dart';
 
 export 'package:appcupboard/screens/expired_product_screen.dart';
 
-export 'package:appcupboard/screens/cupboard_report_screen.dart';
+export 'package:appcupboard/screens/report_cupboard_screen.dart';
 
 export 'package:appcupboard/screens/mark_screen.dart';

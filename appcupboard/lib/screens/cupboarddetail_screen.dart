@@ -19,8 +19,7 @@ class CupBoardDetailScreen extends StatelessWidget {
       body: Container(
           padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           child: ChangeNotifierProvider(
-            create: (_) => CupBoardProvider(
-                cupboardService.selectCupboardDetail,
+            create: (_) => CupBoardProvider(cupboardService.selectCupboard,
                 cupboardService.selectCupboardDet),
             child: _CupBoardForm(
               cupboardService: cupboardService,
@@ -129,14 +128,14 @@ class _CupBoardForm extends StatelessWidget {
               TextFormField(
                 autocorrect: false,
                 initialValue: newDetail.amount.toString(),
-                keyboardType: TextInputType.number,
+                //keyboardType: TextInputType.number,
                 decoration: InputDecorations.authInputDecoration(
                     hintText: 'Amount',
                     labelText: 'Amount',
                     prefixIcon: Icons.confirmation_number),
                 onChanged: (value) => newDetail.amount = value,
                 validator: (value) {
-                  return (value != null && value.length >= 3)
+                  return (value != null && value.length >= 1)
                       ? null
                       : 'El campo solo acepta numeros';
                 },

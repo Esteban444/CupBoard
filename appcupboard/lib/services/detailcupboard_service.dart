@@ -1,21 +1,21 @@
-import 'dart:convert';
-
-import 'package:appcupboard/models/cupboard.dart';
+/*import 'dart:convert';
+import 'package:appcupboard/models/detail_cupboard.dart';
 import 'package:flutter/cupertino.dart';
+
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
 class DetailCupBoardService extends ChangeNotifier {
-  final List<CupBoard> cupboardList = [];
-  late CupBoard selectCupboardDetail;
-  final storage = FlutterSecureStorage();
+  final List<CupBoardModel> detailcupboardList = [];
+  late CupBoardModel selectCupboard;
+  final storage = const FlutterSecureStorage();
   bool isloading = true;
 
   DetailCupBoardService() {
     loadCupboard();
   }
 
-  Future<List<CupBoard>> loadCupboard() async {
+  Future<List<CupBoardModel>> loadCupboard() async {
     notifyListeners();
 
     final url = Uri.parse('https://10.0.2.2:5001/api/CupboardDetails');
@@ -31,13 +31,13 @@ class DetailCupBoardService extends ChangeNotifier {
     final List<dynamic> cupboardMap = json.decode(resp.body);
 
     cupboardMap.forEach((value) {
-      final response = CupBoard.fromMap(value);
-      cupboardList.add(response);
+      final response = CupBoardModel.fromMap(value);
+      detailcupboardList.add(response);
     });
 
     isloading = false;
     notifyListeners();
 
-    return cupboardList;
+    return detailcupboardList;
   }
-}
+}*/

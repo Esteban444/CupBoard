@@ -4,7 +4,7 @@ import 'package:jiffy/jiffy.dart';
 import 'package:appcupboard/models/report_cupboard.dart';
 
 class ListCupboardCardReport extends StatelessWidget {
-  final CupboardModel cupboard;
+  final CupboardAvailable cupboard;
   final double height;
 
   const ListCupboardCardReport({
@@ -26,7 +26,7 @@ class ListCupboardCardReport extends StatelessWidget {
           alignment: Alignment.bottomLeft,
           children: [
             _DetailReport(
-              nombre: cupboard.product!.nameProduct,
+              nombre: cupboard.productAvailable!.nameProduct,
               fecha: Jiffy(cupboard.expirationDate).format("dd MMM yyyy"),
               height: height,
             ),

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:jiffy/jiffy.dart';
+
+import 'package:appcupboard/models/detail_cupboard.dart';
 import 'package:appcupboard/services/services.dart';
 import 'package:appcupboard/models/cupboard.dart';
 
@@ -19,10 +22,10 @@ class CupBoardScreen extends StatelessWidget {
       body: Container(
         color: Colors.black12,
         child: ListView.builder(
-            itemCount: cupboardservice.cupboards.length,
+            itemCount: cupboardservice.cupboard.length,
             itemBuilder: (BuildContext context, int index) {
               return _CardCupBoard(
-                cupboard: cupboardservice.cupboards[index],
+                cupboard: cupboardservice.cupboard[index],
               );
             }),
       ),
@@ -31,7 +34,7 @@ class CupBoardScreen extends StatelessWidget {
           child: Icon(Icons.add),
           backgroundColor: Colors.indigo[600],
           onPressed: () {
-            cupboardservice.selectCupboardDetail = CupBoard(
+            cupboardservice.selectCupboard = CupBoard(
               nameCupBoard: '',
               isDefault: true,
               creationDate: '',
@@ -50,7 +53,7 @@ class CupBoardScreen extends StatelessWidget {
 }
 
 class _CardCupBoard extends StatelessWidget {
-  final CupBoard cupboard;
+  final CupBoardModel cupboard;
 
   const _CardCupBoard({Key? key, required this.cupboard}) : super(key: key);
 
@@ -59,6 +62,8 @@ class _CardCupBoard extends StatelessWidget {
     final cupboardService = Provider.of<CupBoardService>(context);
     final index = cupboardService.cupboards
         .indexWhere((e) => e.idCupBoard == cupboard.idCupBoard);
+
+    //final fecha = Jiffy(cupboard.)
 
     return Padding(
       padding: EdgeInsets.symmetric(
@@ -76,28 +81,35 @@ class _CardCupBoard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Name: ${cupboard.nameCupBoard}',
+              'Product: ${cupboard.product!.nameProduct}',
               style: TextStyle(fontSize: 25),
             ),
             SizedBox(
               height: 10,
             ),
             Text(
-              'IsDefaul: ${cupboard.isDefault}',
+              'Amount: ${cupboard.amount}',
               style: TextStyle(fontSize: 25),
             ),
             SizedBox(
               height: 10,
             ),
             Text(
-              'Creation: ${cupboard.creationDate}',
+              'Entry: ${Jiffy(cupboard.entryDate).format('dd-MM-yyyy')}',
               style: TextStyle(fontSize: 25),
             ),
             SizedBox(
               height: 10,
             ),
             Text(
-              'Detail: ${cupboard.cupBoardDetails}',
+              'Exit: ${Jiffy(cupboard.exitDate).format('dd-MM-yyyy')}',
+              style: TextStyle(fontSize: 25),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              'Expiration: ${Jiffy(cupboard.expirationDate).format('dd-MM-yyyy')}',
               style: TextStyle(fontSize: 25),
             ),
             Row(
@@ -120,8 +132,7 @@ class _CardCupBoard extends StatelessWidget {
                   ),
                   onPressed: () {
                     final dialog = AlertDialog(
-                        title: Text(
-                            '¿Are you sure to delete ${cupboard.nameCupBoard}?'),
+                        title: Text('¿Are you sure to delete?'),
                         content: Text('Delete'),
                         actions: [
                           TextButton(

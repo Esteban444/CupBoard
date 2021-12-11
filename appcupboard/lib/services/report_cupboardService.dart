@@ -6,8 +6,8 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
 class ReportCupboardService extends ChangeNotifier {
-  final List<CupboardModel> productList = [];
-  late CupboardModel selectCupboard;
+  final List<CupboardAvailable> productList = [];
+  late CupboardAvailable selectCupboard;
   final storage = const FlutterSecureStorage();
   bool isloading = true;
 
@@ -15,7 +15,7 @@ class ReportCupboardService extends ChangeNotifier {
     loadCupboard();
   }
 
-  Future<List<CupboardModel>> loadCupboard() async {
+  Future<List<CupboardAvailable>> loadCupboard() async {
     notifyListeners();
 
     final url = Uri.parse('https://10.0.2.2:5001/api/CupboardDetails');
@@ -31,7 +31,7 @@ class ReportCupboardService extends ChangeNotifier {
     final List<dynamic> cupboardMap = json.decode(resp.body);
 
     cupboardMap.forEach((value) {
-      final response = CupboardModel.fromMap(value);
+      final response = CupboardAvailable.fromMap(value);
       productList.add(response);
     });
 

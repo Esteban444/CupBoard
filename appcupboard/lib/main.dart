@@ -28,8 +28,8 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(lazy: false, create: (_) => AuthService()),
         ChangeNotifierProvider(lazy: false, create: (_) => CategoryService()),
         ChangeNotifierProvider(lazy: false, create: (_) => CupBoardService()),
-        ChangeNotifierProvider(
-            lazy: false, create: (_) => DetailCupBoardService()),
+        //ChangeNotifierProvider(
+        // lazy: false, create: (_) => DetailCupBoardService()),
         ChangeNotifierProvider(lazy: false, create: (_) => MarkService()),
         ChangeNotifierProvider(lazy: false, create: (_) => ProductsService()),
         ChangeNotifierProvider(

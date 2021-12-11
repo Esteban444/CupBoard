@@ -1,20 +1,21 @@
-import 'package:appcupboard/models/cupboard.dart';
 import 'package:flutter/material.dart';
-
 import 'dart:convert';
+
+import 'package:appcupboard/models/cupboard.dart';
+import 'package:appcupboard/models/detail_cupboard.dart';
 
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
 class CupBoardService extends ChangeNotifier {
-  final List<CupBoard> cupboardDetail = [];
-  late CupBoard selectCupboardDetail;
+  final List<CupBoard> cupboards = [];
+  late CupBoard selectCupboard;
 
   final List<CupBoardDetail> cupboardDet = [];
   late CupBoardDetail selectCupboardDet;
 
-  final List<CupBoard> cupboards = [];
-  late CupBoard selectCupboard;
+  final List<CupBoardModel> cupboard = [];
+  late CupBoardModel selectCupboardm;
 
   final storage = const FlutterSecureStorage();
   bool isSaving = false;
@@ -24,11 +25,11 @@ class CupBoardService extends ChangeNotifier {
     loadCupboard();
   }
 
-  Future<List<CupBoard>> loadCupboard() async {
+  Future<List<CupBoardModel>> loadCupboard() async {
     isloading = true;
     notifyListeners();
 
-    final url = Uri.parse('https://10.0.2.2:5001/api/CupBoard');
+    final url = Uri.parse('https://10.0.2.2:5001/api/CupboardDetails');
     final token = await storage.read(key: 'token');
 
     Map<String, String> requestHeaders = {
@@ -41,14 +42,14 @@ class CupBoardService extends ChangeNotifier {
     final List<dynamic> cupboardMap = json.decode(resp.body);
 
     cupboardMap.forEach((value) {
-      final response = CupBoard.fromMap(value);
-      cupboards.add(response);
+      final response = CupBoardModel.fromMap(value);
+      cupboard.add(response);
     });
 
     isloading = false;
     notifyListeners();
 
-    return cupboards;
+    return cupboard;
   }
 
   Future saveOrUpdateCupboard(
@@ -86,9 +87,6 @@ class CupBoardService extends ChangeNotifier {
         headers: requesHeaders, body: jsonEncode(cupboardData));
     final data = json.decode(resp.body);
     cupboard.idCupBoard = data['idCupBoard'];
-
-    //cupboardDetail.add(cupboardModel);
-    print(data);
 
     notifyListeners();
     cupboards.clear();

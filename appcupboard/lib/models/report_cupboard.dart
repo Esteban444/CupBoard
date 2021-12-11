@@ -1,34 +1,29 @@
 import 'dart:convert';
 
-class Product {
-  Product({
+class ProductAvailable {
+  ProductAvailable({
     required this.idProduct,
     required this.idMark,
     required this.nameProduct,
     required this.barCode,
-    //required this.cupBoardDetails,
-    //required this.expirationDate,
   });
 
   String idProduct;
   String idMark;
   String nameProduct;
   String barCode;
-  //List<CupboardModel> cupBoardDetails;
-  //DateTime expirationDate;
 
-  factory Product.fromJson(String str) => Product.fromMap(json.decode(str));
+  factory ProductAvailable.fromJson(String str) =>
+      ProductAvailable.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory Product.fromMap(Map<String, dynamic> json) => Product(
+  factory ProductAvailable.fromMap(Map<String, dynamic> json) =>
+      ProductAvailable(
         idProduct: json["idProduct"],
         idMark: json["idMark"],
         nameProduct: json["nameProduct"],
         barCode: json["barCode"],
-        //cupBoardDetails: List<CupboardModel>.from(json["cupBoardDetails"].map((x) => CupboardModel.fromMap(x))),
-        // expirationDate: DateTime.parse(json["expirationDate"]),
-        //expirationDate: json["expirationDate"] == null ? null : DateTime.parse(json["expirationDate"]),
       );
 
   Map<String, dynamic> toMap() => {
@@ -36,73 +31,79 @@ class Product {
         "idMark": idMark,
         "nameProduct": nameProduct,
         "barCode": barCode,
-        //"cupBoardDetails": List<dynamic>.from(cupBoardDetails.map((x) => x.toMap())),
-        //"expirationDate": expirationDate.toIso8601String(),
       };
 }
 
-class ReportCupBoard {
-  ReportCupBoard({
-    this.idCupBoard,
-    this.nameCupBoard,
-    this.isDefault,
-    this.creationDate,
-    this.cupBoardDetails,
+class MainCupBoardAvailable {
+  MainCupBoardAvailable({
+    required this.idCupBoard,
+    required this.nameCupBoard,
+    required this.isDefault,
+    required this.creationDate,
+    required this.cupBoardDetails,
   });
 
-  String? idCupBoard;
-  String? nameCupBoard;
-  bool? isDefault;
-  DateTime? creationDate;
-  List<CupboardModel>? cupBoardDetails;
+  String idCupBoard;
+  String nameCupBoard;
+  bool isDefault;
+  DateTime creationDate;
+  List<CupboardAvailable> cupBoardDetails;
 
-  factory ReportCupBoard.fromJson(String str) =>
-      ReportCupBoard.fromMap(json.decode(str));
+  factory MainCupBoardAvailable.fromJson(String str) =>
+      MainCupBoardAvailable.fromMap(json.decode(str));
 
-  factory ReportCupBoard.fromMap(Map<String, dynamic> json) => ReportCupBoard(
+  String toJson() => json.encode(toMap());
+
+  factory MainCupBoardAvailable.fromMap(Map<String, dynamic> json) =>
+      MainCupBoardAvailable(
         idCupBoard: json["idCupBoard"],
         nameCupBoard: json["nameCupBoard"],
         isDefault: json["isDefault"],
         creationDate: DateTime.parse(json["creationDate"]),
-        cupBoardDetails: List<CupboardModel>.from(
-            json["cupBoardDetails"].map((x) => CupboardModel.fromMap(x))),
+        cupBoardDetails: List<CupboardAvailable>.from(
+            json["cupBoardDetails"].map((x) => CupboardAvailable.fromMap(x))),
       );
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toMap() => {
         "idCupBoard": idCupBoard,
         "nameCupBoard": nameCupBoard,
         "isDefault": isDefault,
-        "creationDate": creationDate,
+        "creationDate": creationDate.toIso8601String(),
         "cupBoardDetails":
-            List<dynamic>.from(cupBoardDetails!.map((x) => x.toJson())),
+            List<dynamic>.from(cupBoardDetails.map((x) => x.toMap())),
       };
 }
 
-class CupboardModel {
-  CupboardModel({
-    this.idCupboardDetail,
-    this.idCupBoard,
+class CupboardAvailable {
+  CupboardAvailable({
+    required this.idCupboardDetail,
+    required this.idCupBoard,
     required this.idProduct,
     required this.amount,
     required this.entryDate,
     required this.exitDate,
     required this.expirationDate,
-    this.product,
+    this.mainCupBoardAvailable,
+    this.productAvailable,
   });
 
-  String? idCupboardDetail;
-  String? idCupBoard;
+  String idCupboardDetail;
+  String idCupBoard;
   String idProduct;
   int amount;
   String entryDate;
   String exitDate;
   String expirationDate;
-  Product? product;
+  MainCupBoardAvailable? mainCupBoardAvailable;
+  ProductAvailable? productAvailable;
 
-  factory CupboardModel.fromJson(String str) =>
-      CupboardModel.fromMap(json.decode(str));
+  factory CupboardAvailable.fromJson(String str) =>
+      CupboardAvailable.fromMap(json.decode(str));
 
-  factory CupboardModel.fromMap(Map<String, dynamic> json) => CupboardModel(
+  String toJson() => json.encode(toMap());
+
+  factory CupboardAvailable.fromMap(Map<String, dynamic> json) =>
+      CupboardAvailable(
         idCupboardDetail: json["idCupboardDetail"],
         idCupBoard: json["idCupBoard"],
         idProduct: json["idProduct"],
@@ -110,11 +111,11 @@ class CupboardModel {
         entryDate: json["entryDate"],
         exitDate: json["exitDate"],
         expirationDate: json["expirationDate"],
-        //cupBoard: CupBoard.fromMap(json["cupBoard"]),
-        product: Product.fromMap(json["product"]),
+        productAvailable: ProductAvailable.fromMap(json["product"]),
+        //mainCupBoardAvailable: MainCupBoardAvailable.fromMap(json["cupBoard"]),
       );
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toMap() => {
         "idCupboardDetail": idCupboardDetail,
         "idCupBoard": idCupBoard,
         "idProduct": idProduct,
@@ -122,7 +123,7 @@ class CupboardModel {
         "entryDate": entryDate,
         "exitDate": exitDate,
         "expirationDate": expirationDate,
-        //"cupBoard": cupBoard!.toJson(),
-        //"product": product!.toMap(),
+        "productAvailable": productAvailable!.toMap(),
+        //"mainCupBoardAvailable": mainCupBoardAvailable!.toMap(),
       };
 }
