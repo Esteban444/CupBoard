@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 
 import 'package:appcupboard/services/authservice.dart';
 
-import 'home_screen.dart';
-import 'login_screen.dart';
+import 'home/home_screen.dart';
+import 'auth/login_screen.dart';
 
 class CheckAuthScreen extends StatelessWidget {
   @override

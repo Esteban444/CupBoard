@@ -16,6 +16,11 @@ class ProductsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  selectValue(String value) {
+    product.idMark = value;
+    notifyListeners();
+  }
+
   bool isValidForm() {
     return (formKey.currentState?.validate() ?? false);
   }

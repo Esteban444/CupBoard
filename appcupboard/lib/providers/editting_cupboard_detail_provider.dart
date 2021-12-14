@@ -1,21 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:appcupboard/models/cupboard.dart';
+import 'package:appcupboard/models/detail_cupboard.dart';
 
-class CupBoardProvider extends ChangeNotifier {
+class EdittingCupBoardProvider extends ChangeNotifier {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  late CupBoard cupModel;
-  late CupBoardDetail cupDetail;
+  late CupBoardModel cupDetail;
 
-  CupBoardProvider(
-    this.cupModel,
+  EdittingCupBoardProvider(
     this.cupDetail,
   );
-
-  updateIsDefault(bool value) {
-    this.cupModel.isDefault = value;
-    notifyListeners();
-  }
 
   selectValue(String value) {
     cupDetail.idProduct = value;

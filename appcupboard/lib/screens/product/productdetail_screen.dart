@@ -18,7 +18,7 @@ class ProductDetailScreen extends StatelessWidget {
       body: Container(
           padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
           child: ChangeNotifierProvider(
-            create: (_) => ProductsProvider(productService.selectProduct),
+            create: (_) => ProductsProvider(productService.selectProducts),
             child: _ProductForm(productService: productService),
           )),
     );
@@ -72,11 +72,7 @@ class _ProductForm extends StatelessWidget {
                 color: Colors.indigo,
               ),
               hint: const Text('Select Mark'),
-              selectedItemBuilder: (BuildContext context) {
-                return markService.marks.map<Widget>((Mark item) {
-                  return Text('item ${item.mark}');
-                }).toList();
-              },
+              value: newproduct.idMark,
               items:
                   markService.marks.map<DropdownMenuItem<String>>((Mark value) {
                 return DropdownMenuItem<String>(
@@ -84,9 +80,7 @@ class _ProductForm extends StatelessWidget {
                   child: Text(value.mark),
                 );
               }).toList(),
-              onChanged: (value) {
-                newproduct.idMark = value.toString();
-              },
+              onChanged: (value) => productForm.selectValue(value.toString()),
             ),
             const SizedBox(height: 20),
             TextFormField(

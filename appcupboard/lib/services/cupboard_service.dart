@@ -94,6 +94,32 @@ class CupBoardService extends ChangeNotifier {
     return cupboard.idCupBoard;
   }
 
+  Future<String?> updateDetail(CupBoardModel model) async {
+    final url = Uri.parse(
+        'https://10.0.2.2:5001/api/CupboardDetails/${model.idCupboardDetail}');
+    final token = await storage.read(key: 'token');
+
+    Map<String, String> requestHeaders = {
+      'Content-type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token'
+    };
+
+    // ignore: unused_local_variable
+    final resp = await http.put(
+      url,
+      headers: requestHeaders,
+      body: jsonEncode(model.toJson()),
+    );
+
+    final index = cupboard.indexWhere(
+        (element) => element.idCupboardDetail == model.idCupboardDetail);
+    cupboard[index] = model;
+
+    notifyListeners();
+    return model.idCupboardDetail;
+  }
+
   Future<String> deleteCupboard(String idCupboard) async {
     final url = Uri.parse('https://10.0.2.2:5001/api/CupBoard/$idCupboard');
     final token = await storage.read(key: 'token');

@@ -41,7 +41,7 @@ class CupBoardScreen extends StatelessWidget {
             );
             cupboardservice.selectCupboardDet = CupBoardDetail(
                 idCupBoard: '',
-                idProduct: '',
+                idProduct: cupboardservice.cupboard.first.idProduct,
                 amount: '',
                 entryDate: '',
                 exitDate: '',
@@ -60,8 +60,8 @@ class _CardCupBoard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cupboardService = Provider.of<CupBoardService>(context);
-    final index = cupboardService.cupboards
-        .indexWhere((e) => e.idCupBoard == cupboard.idCupBoard);
+    final index = cupboardService.cupboard
+        .indexWhere((e) => e.idCupboardDetail == cupboard.idCupboardDetail);
 
     //final fecha = Jiffy(cupboard.)
 
@@ -80,6 +80,9 @@ class _CardCupBoard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(
+              height: 10,
+            ),
             Text(
               'Product: ${cupboard.product!.nameProduct}',
               style: TextStyle(fontSize: 25),
@@ -117,9 +120,9 @@ class _CardCupBoard extends StatelessWidget {
                 IconButton(
                   icon: Icon(Icons.edit),
                   onPressed: () {
-                    cupboardService.selectCupboard =
-                        cupboardService.cupboards[index];
-                    Navigator.pushNamed(context, 'detailcupboard');
+                    cupboardService.selectCupboardm =
+                        cupboardService.cupboard[index];
+                    Navigator.pushNamed(context, 'edittingdetailcupboard');
                   },
                 ),
                 SizedBox(

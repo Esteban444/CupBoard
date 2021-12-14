@@ -30,8 +30,10 @@ class ProductScreen extends StatelessWidget {
           child: Icon(Icons.add),
           backgroundColor: Colors.indigo[600],
           onPressed: () {
-            productService.selectProduct =
-                Products(nameProduct: '', idMark: '', barCode: '');
+            productService.selectProducts = Products(
+                nameProduct: '',
+                idMark: productService.products.first.idMark,
+                barCode: '');
             Navigator.pushNamed(context, 'detailproduct');
           }),
     );
@@ -86,7 +88,7 @@ class _CardContainer extends StatelessWidget {
                 IconButton(
                   icon: Icon(Icons.edit),
                   onPressed: () {
-                    productService.selectProduct =
+                    productService.selectProducts =
                         productService.products[index];
                     Navigator.pushNamed(context, 'detailproduct');
                   },

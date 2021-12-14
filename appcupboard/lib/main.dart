@@ -60,6 +60,7 @@ class MyApp extends StatelessWidget {
         'detailcategory': (_) => CategoryDetailScreen(),
         'cupboard': (_) => CupBoardScreen(),
         'detailcupboard': (_) => CupBoardDetailScreen(),
+        'edittingdetailcupboard': (_) => EdittingCupBoardDetailScreen(),
         'mark': (_) => MarkScreen(),
         'detailmark': (_) => MarkDetailScreen(),
         'product': (_) => ProductScreen(),

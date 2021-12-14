@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 
 class ProductsService extends ChangeNotifier {
   final List<Products> products = [];
-  late Products selectProduct;
+  late Products selectProducts;
 
   final storage = FlutterSecureStorage();
 

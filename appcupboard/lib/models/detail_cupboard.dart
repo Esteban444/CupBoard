@@ -92,7 +92,7 @@ class CupBoardModel {
   String? idCupboardDetail;
   String? idCupBoard;
   String idProduct;
-  int amount;
+  String amount;
   String entryDate;
   String exitDate;
   String expirationDate;
@@ -105,7 +105,7 @@ class CupBoardModel {
         idCupboardDetail: json["idCupboardDetail"],
         idCupBoard: json["idCupBoard"],
         idProduct: json["idProduct"],
-        amount: json["amount"],
+        amount: json["amount"].toString(),
         entryDate: json["entryDate"],
         exitDate: json["exitDate"],
         expirationDate: json["expirationDate"],
