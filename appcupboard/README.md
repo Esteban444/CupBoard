@@ -25,5 +25,5 @@ After these steps it will take you to a screen like this:
 
 ![](/login.jpg)
 
-
+On this screen you can register if you are already registered if you do not click on the create new account button, it will take you to a very similar screen where you can create a user to enter.
 
