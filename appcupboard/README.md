@@ -22,8 +22,11 @@ To use the project you clone the repository and with the flutter pub get command
 
 After these steps it will take you to a screen like this:
 
-
 ![](/login.jpg)
 
 On this screen you can register if you are already registered if you do not click on the create new account button, it will take you to a very similar screen where you can create a user to enter.
+
+After logging in with the created user you will arrive at a screen like:
+
+![](/home.png)
 
