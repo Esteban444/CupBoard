@@ -8,6 +8,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
 class ProductsService extends ChangeNotifier {
+  final _baseUrl = 'https://apiproductmanagmentteamint.azurewebsites.net';
   final List<Products> products = [];
   late Products selectProducts;
 
@@ -23,7 +24,7 @@ class ProductsService extends ChangeNotifier {
     this.isloading = true;
     notifyListeners();
 
-    final url = Uri.parse('https://10.0.2.2:5001/api/Products');
+    final url = Uri.parse('$_baseUrl/api/Products');
     final token = await storage.read(key: 'token');
 
     Map<String, String> requestHeaders = {
@@ -59,7 +60,7 @@ class ProductsService extends ChangeNotifier {
   }
 
   Future<String?> saveProduct(Products product) async {
-    final url = Uri.parse('https://10.0.2.2:5001/api/Products');
+    final url = Uri.parse('$_baseUrl/api/Products');
     final token = await storage.read(key: 'token');
 
     Map<String, String> requestHeaders = {
@@ -81,8 +82,7 @@ class ProductsService extends ChangeNotifier {
   }
 
   Future<String?> updateProduct(Products product) async {
-    final url =
-        Uri.parse('https://10.0.2.2:5001/api/Products/${product.idProduct}');
+    final url = Uri.parse('$_baseUrl/api/Products/${product.idProduct}');
     final token = await storage.read(key: 'token');
 
     Map<String, String> requestHeaders = {
@@ -107,7 +107,7 @@ class ProductsService extends ChangeNotifier {
   }
 
   Future<String> deleteProduct(String idProduct) async {
-    final url = Uri.parse('https://10.0.2.2:5001/api/Products/$idProduct');
+    final url = Uri.parse('$_baseUrl/api/Products/$idProduct');
     final token = await storage.read(key: 'token');
 
     Map<String, String> requestHeaders = {

@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:appcupboard/models/category.dart';
 
 class CategoryService extends ChangeNotifier {
+  final _baseUrl = 'https://apiproductmanagmentteamint.azurewebsites.net';
   final List<Category> categories = [];
   late Category selectedCategory;
 
@@ -22,7 +23,7 @@ class CategoryService extends ChangeNotifier {
     this.isLoading = true;
     notifyListeners();
 
-    final url = Uri.parse('https://10.0.2.2:5001/api/Categories');
+    final url = Uri.parse('$_baseUrl/api/Categories');
 
     final token = await storage.read(key: 'token');
 
@@ -57,8 +58,7 @@ class CategoryService extends ChangeNotifier {
   }
 
   Future<String?> updateCategory(Category category) async {
-    final url = Uri.parse(
-        'https://10.0.2.2:5001/api/Categories/${category.idcategory}');
+    final url = Uri.parse('$_baseUrl/api/Categories/${category.idcategory}');
 
     final token = await storage.read(key: 'token');
 
@@ -82,7 +82,7 @@ class CategoryService extends ChangeNotifier {
   }
 
   Future<String?> createCategory(Category category) async {
-    final url = Uri.parse('https://10.0.2.2:5001/api/Categories');
+    final url = Uri.parse('$_baseUrl/api/Categories');
 
     final token = await storage.read(key: 'token');
 
@@ -105,7 +105,7 @@ class CategoryService extends ChangeNotifier {
   }
 
   Future<String> deleteCategory(String idCategory) async {
-    final url = Uri.parse('https://10.0.2.2:5001/api/Categories/$idCategory');
+    final url = Uri.parse('$_baseUrl/api/Categories/$idCategory');
 
     final token = await storage.read(key: 'token');
 

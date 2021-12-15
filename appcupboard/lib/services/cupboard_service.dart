@@ -8,6 +8,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
 class CupBoardService extends ChangeNotifier {
+  final _baseUrl = 'https://apiproductmanagmentteamint.azurewebsites.net';
   final List<CupBoard> cupboards = [];
   late CupBoard selectCupboard;
 
@@ -29,7 +30,7 @@ class CupBoardService extends ChangeNotifier {
     isloading = true;
     notifyListeners();
 
-    final url = Uri.parse('https://10.0.2.2:5001/api/CupboardDetails');
+    final url = Uri.parse('$_baseUrl/api/CupboardDetails');
     final token = await storage.read(key: 'token');
 
     Map<String, String> requestHeaders = {
@@ -67,8 +68,7 @@ class CupBoardService extends ChangeNotifier {
 
   Future<String?> saveCupboard(
       CupBoard cupboard, CupBoardDetail cupBoardDetail) async {
-    final url =
-        Uri.parse('https://10.0.2.2:5001/api/CupBoard/Create-cupboard-Detail');
+    final url = Uri.parse('$_baseUrl/api/CupBoard/Create-cupboard-Detail');
     final token = await storage.read(key: 'token');
 
     final Map<String, dynamic> cupboardData = {
@@ -95,8 +95,8 @@ class CupBoardService extends ChangeNotifier {
   }
 
   Future<String?> updateDetail(CupBoardModel model) async {
-    final url = Uri.parse(
-        'https://10.0.2.2:5001/api/CupboardDetails/${model.idCupboardDetail}');
+    final url =
+        Uri.parse('$_baseUrl/api/CupboardDetails/${model.idCupboardDetail}');
     final token = await storage.read(key: 'token');
 
     Map<String, String> requestHeaders = {
@@ -121,7 +121,7 @@ class CupBoardService extends ChangeNotifier {
   }
 
   Future<String> deleteCupboard(String idCupboard) async {
-    final url = Uri.parse('https://10.0.2.2:5001/api/CupBoard/$idCupboard');
+    final url = Uri.parse('$_baseUrl/api/CupBoard/$idCupboard');
     final token = await storage.read(key: 'token');
 
     Map<String, String> requestHeaders = {

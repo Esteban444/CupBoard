@@ -1,16 +1,29 @@
 # appcupboard
 
-A new Flutter project.
+This project was thought and developed for the management of the house cupboard
 
-## Getting Started
+## Project overview.
 
-This project is a starting point for a Flutter application.
+- Handler states.
 
-A few resources to get you started if this is your first Flutter project:
+- Screns.
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Handler states.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+To manage the statuses in the project, provider was used
+
+## Screens.
+
+Each main screen was implemented in two, one to show the content in cards and the other to show the form where the data can be created and edited.
+
+## How to use?
+
+To use the project you clone the repository and with the flutter pub get command you update its libraries. Then you open the project with Visual Studio Code and with F5 or Fn + F5 you lift the project.
+
+After these steps it will take you to a screen like this:
+
+
+![](/login.jpg)
+
+
+

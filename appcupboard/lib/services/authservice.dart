@@ -5,6 +5,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
 class AuthService extends ChangeNotifier {
+  final _baseUrl = 'https://apiproductmanagmentteamint.azurewebsites.net';
   final storage = FlutterSecureStorage();
 
   Future<String?> createUser(String nombreCompleto, String userName,
@@ -22,7 +23,7 @@ class AuthService extends ChangeNotifier {
       'Accept': 'application/json'
     };
 
-    final url = Uri.parse('https://10.0.2.2:5001/api/Acount/Register');
+    final url = Uri.parse('$_baseUrl/api/Acount/Register');
 
     // ignore: unused_local_variable
     final resp = await http.post(url,
@@ -42,7 +43,7 @@ class AuthService extends ChangeNotifier {
       'Accept': 'application/json'
     };
 
-    final url = Uri.parse('https://10.0.2.2:5001/api/Acount/login');
+    final url = Uri.parse('$_baseUrl/api/Acount/login');
 
     http.Response resp = await http.post(url,
         headers: requestHeaders, body: json.encode(authData));

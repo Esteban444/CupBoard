@@ -6,6 +6,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:http/http.dart' as http;
 
 class ReportCupboardService extends ChangeNotifier {
+  final _baseUrl = 'https://apiproductmanagmentteamint.azurewebsites.net';
   final List<CupboardAvailable> productList = [];
   late CupboardAvailable selectCupboard;
   final storage = const FlutterSecureStorage();
@@ -18,7 +19,7 @@ class ReportCupboardService extends ChangeNotifier {
   Future<List<CupboardAvailable>> loadCupboard() async {
     notifyListeners();
 
-    final url = Uri.parse('https://10.0.2.2:5001/api/CupboardDetails');
+    final url = Uri.parse('$_baseUrl/api/CupboardDetails');
     final token = await storage.read(key: 'token');
 
     Map<String, String> requestHeaders = {
